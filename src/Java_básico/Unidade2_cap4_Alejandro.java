@@ -1,28 +1,56 @@
 package Java_básico;
-
 import java.util.Scanner;
 
 public class Unidade2_cap4_Alejandro {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Qual o modelo do carro? ");
-        String model = scanner.nextLine();
-        System.out.println("Qual a potência do motor? ");
-        int potential = scanner.nextInt();
-        Questao1.Carro Carro1 = new Questao1.Carro(potential, model);
-
-
-        System.out.println("Selecione o teste a ser feito:");
-        System.out.println("1 - Com motor");
-        System.out.println("2 - Sem motor");
-        int decision = scanner.nextInt();
-        switch (decision){
+        System.out.println("Qual questão você deseja acessar?");
+        int question = scanner.nextInt();
+        switch (question){
             case(1):
-                Carro1.ligarCarro();
+                System.out.println("Qual o modelo do carro? ");
+                String model = scanner.nextLine();
+                System.out.println("Qual a potência do motor? ");
+                int potential = scanner.nextInt();
+                Questao1.Carro Carro1 = new Questao1.Carro(potential, model);
+                System.out.println("Selecione o teste a ser feito:");
+                System.out.println("1 - Com motor");
+                System.out.println("2 - Sem motor");
+                int decision = scanner.nextInt();
+                switch (decision){
+                    case(1):
+                        Carro1.ligarCarro();
 
-            case(2):
-                Carro1.RemoverMotor();
-                Carro1.ligarCarro();
+                    case(2):
+                        Carro1.RemoverMotor();
+                        Carro1.ligarCarro();
+                }
+                scanner.close();
+            case (2):
+                System.out.println("Qual o nome do departamento?");
+                scanner.nextLine();
+                String nome = scanner.nextLine();
+                Questao2.Departamento departamento = new Questao2.Departamento(nome);
+                System.out.println("Qual o nome do professor?");
+
+                String nome = scanner.nextLine();
+
+            case (3):
+
+            case (4):
+
+            case (5):
+
+            case (6):
+
+            case (7):
+
+            case (8):
+
+            case (9):
+
+            case (10):
+
         }
 
     }
@@ -60,7 +88,26 @@ public class Unidade2_cap4_Alejandro {
     }
 
     public class Questao2{
-
+        public static class Departamento{
+            private String nome;
+            public Departamento(String nome){
+                this.nome = nome;
+            }
+            public void MostrarDepartamento(){
+                System.out.printf("O departamento é: %s", this.nome);
+            }
+        }
+        public static class Professor{
+            private String nome;
+            private Departamento departamento;
+            public Professor(String nome, String departamento){
+                this.nome = nome;
+                this.departamento = new Departamento(departamento);
+            }
+            public void DepartamentoProfessor(){
+                System.out.printf("O departamento do %s é %s", nome, departamento);
+            }
+        }
     }
 
 }
