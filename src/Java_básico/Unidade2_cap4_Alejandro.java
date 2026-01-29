@@ -20,21 +20,34 @@ public class Unidade2_cap4_Alejandro {
                 switch (decision){
                     case(1):
                         Carro1.ligarCarro();
-
+                        break;
                     case(2):
                         Carro1.RemoverMotor();
                         Carro1.ligarCarro();
+                        break;
                 }
                 scanner.close();
             case (2):
                 System.out.println("Qual o nome do departamento?");
                 scanner.nextLine();
-                String nome = scanner.nextLine();
-                Questao2.Departamento departamento = new Questao2.Departamento(nome);
+                String nomeDepartamento = scanner.nextLine();
+                Questao2.Departamento departamento = new Questao2.Departamento(nomeDepartamento);
                 System.out.println("Qual o nome do professor?");
-
-                String nome = scanner.nextLine();
-
+                String nomeProfessor = scanner.nextLine();
+                Questao2.Professor professor = new Questao2.Professor(nomeProfessor, nomeDepartamento);
+                System.out.println("Selecione a informação que deseja ver:");
+                System.out.println("1 - Departamento");
+                System.out.println("2 - Departamento e professor");
+                decision = scanner.nextInt();
+                    switch (decision){
+                        case(1):
+                            departamento.MostrarDepartamento();
+                            break;
+                        case (2):
+                            professor.DepartamentoProfessor();
+                            break;
+                    }
+                    scanner.close();
             case (3):
 
             case (4):
@@ -93,6 +106,7 @@ public class Unidade2_cap4_Alejandro {
             public Departamento(String nome){
                 this.nome = nome;
             }
+
             public void MostrarDepartamento(){
                 System.out.printf("O departamento é: %s", this.nome);
             }
@@ -105,7 +119,7 @@ public class Unidade2_cap4_Alejandro {
                 this.departamento = new Departamento(departamento);
             }
             public void DepartamentoProfessor(){
-                System.out.printf("O departamento do %s é %s", nome, departamento);
+                System.out.printf("O departamento do %s é %s%n", nome, departamento);
             }
         }
     }
