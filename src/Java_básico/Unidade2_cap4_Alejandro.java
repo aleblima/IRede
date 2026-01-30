@@ -103,12 +103,13 @@ public class Unidade2_cap4_Alejandro {
     public class Questao2{
         public static class Departamento{
             private String nome;
+
             public Departamento(String nome){
                 this.nome = nome;
             }
 
             public void MostrarDepartamento(){
-                System.out.printf("O departamento é: %s", this.nome);
+                System.out.printf("O departamento é: %s%n", this.nome);
             }
         }
         public static class Professor{
@@ -119,7 +120,7 @@ public class Unidade2_cap4_Alejandro {
                 this.departamento = new Departamento(departamento);
             }
             public void DepartamentoProfessor(){
-                System.out.printf("O departamento do %s é %s%n", nome, departamento);
+                System.out.printf("O departamento do %s é %s%n", nome, departamento.nome);
             }
         }
     }
