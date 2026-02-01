@@ -24,6 +24,13 @@ public class Unidade2_cap1_Alejandro {
                 float nota = 7;
                 Questao2.Aluno aluno = new Questao2.Aluno();
                 aluno.setGrade(nota);
+            case (3):
+                Questao3.Produto produto = new Questao3.Produto();
+                produto.setName("Caneta");
+                produto.setPrice(2.5f);
+                produto.setQuantity(100);
+                produto.getInfo();
+                break;
         }
     }
 
@@ -60,8 +67,36 @@ public class Unidade2_cap1_Alejandro {
             public void setGrade(float grade){
                 if (grade >= 0 && grade <= 10){
                     this.grade = grade;
-                }
+                } else {
                 System.out.println("A nota deve estar entre 0 e 10.");
+                }
+            }
+            public float getGrade(){
+                return this.grade;
+            }
+        }
+    }
+    public class Questao3{
+        public static class Produto{
+            private String name;
+            private float price;
+            private int quantity;
+
+            public void setName(String name){
+                this.name = name;
+            }
+
+            public void setPrice(float price){
+                this.price = price;
+            }
+
+            public void setQuantity(int quantity){
+                this.quantity = quantity;
+            }
+            public void getInfo(){
+                System.out.printf("O nome do produto é %s%n", this.name);
+                System.out.printf("O preço é R$%.2f%n", this.price);
+                System.out.printf("A quantidade é %d%n", this.quantity);
             }
         }
     }
