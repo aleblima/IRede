@@ -39,6 +39,18 @@ public class Unidade2_cap1_Alejandro {
                 pessoa.renda();
                 break;
             case (5):
+                Questao5.ProdutoAlimenticio produtoAlimenticio = new Questao5.ProdutoAlimenticio();
+                produtoAlimenticio.estaVencido();
+                break;
+            case (6):
+                Questao6.Gerente gerente = new Questao6.Gerente(
+                        "Alejandro", 3500.0, "Engenharia");
+                break;
+            case (7):
+                // Questao7.Animal[] animais = {new Questao7.Cachorro(), new Questao7.Gato()};
+               Questao7.Animal[] animais = new Questao7.Animal[2];
+                for (Questao7.Animal animal : animais) {}
+                break;
         }
     }
 
@@ -145,15 +157,60 @@ public class Unidade2_cap1_Alejandro {
         }
 
         public static class ProdutoAlimenticio extends Produto{
-            private LocalDate dataValidade;
+            private LocalDate dataValidade = LocalDate.of(2026, 02, 02);
             
             public void estaVencido(){
-
+                if (LocalDate.now().isAfter(dataValidade)){
+                    System.out.println("O produto está vencido.");
+                } else {
+                    System.out.println("O produto não está vencido.");
+                }
             }
         }
     }
-    public class Questao6{}
-    public class Questao7{}
+    public class Questao6{
+        public static class Funcionario{
+            private String nome;
+            private double salario;
+
+            public Funcionario(String nome, double salario){
+                this.nome = nome;
+                this.salario = salario;
+            }
+        }
+
+        public static class Gerente extends Funcionario{
+            private String departamento;
+
+            public Gerente(String nome, double salario, String departamento) {
+                super(nome, salario);
+                this.departamento = departamento;
+            }
+        }
+
+
+    }
+    public class Questao7{
+        public static class Animal{
+            private String nome;
+
+            public void fazerSom(){
+                System.out.println( "Au au au!");
+            }
+        }
+        public static class Cachorro extends Animal{
+            @Override
+            public void fazerSom(){
+                System.out.println( "Au au au! ");
+            }
+        }
+        public static class Gato extends Animal{
+            @Override
+            public void fazerSom(){
+                System.out.println("Miau miau!");
+            }
+        }
+    }
     public class Questao8{}
     public class Questao9{}
     public class Questao10{}
