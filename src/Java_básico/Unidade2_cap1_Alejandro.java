@@ -47,9 +47,17 @@ public class Unidade2_cap1_Alejandro {
                         "Alejandro", 3500.0, "Engenharia");
                 break;
             case (7):
-                // Questao7.Animal[] animais = {new Questao7.Cachorro(), new Questao7.Gato()};
-               Questao7.Animal[] animais = new Questao7.Animal[2];
-                for (Questao7.Animal animal : animais) {}
+                Questao7.Animal[] animais = {new Questao7.Cachorro(), new Questao7.Gato()};
+            //  ou Questao7.Animal[] animais = new Questao7.Animal[2]; porém aqui teria que instanciar os objetos depois
+                for (Questao7.Animal animal : animais) {
+                    animal.fazerSom();
+                }
+                break;
+            case (8):
+                Questao8.FuncionarioCLT clt = new Questao8.FuncionarioCLT();
+                Questao8.FuncionarioPJ pj = new Questao8.FuncionarioPJ();
+                System.out.println("Salário CLT: " + clt.calcularSalario());
+                System.out.println("Salário PJ: " + pj.calcularSalario());
                 break;
         }
     }
@@ -191,12 +199,10 @@ public class Unidade2_cap1_Alejandro {
 
     }
     public class Questao7{
-        public static class Animal{
+        public static abstract class Animal{
             private String nome;
 
-            public void fazerSom(){
-                System.out.println( "Au au au!");
-            }
+            public abstract void fazerSom();
         }
         public static class Cachorro extends Animal{
             @Override
@@ -211,7 +217,34 @@ public class Unidade2_cap1_Alejandro {
             }
         }
     }
-    public class Questao8{}
+    public class Questao8{
+        public static abstract class Funcionario{
+            private String nome;
+            protected double salario;
+
+            public abstract double calcularSalario();
+        }
+        public static class FuncionarioCLT extends Funcionario{
+            private float INSS = 0.075f;
+            @Override
+            public double calcularSalario() {
+                salario = 500;
+                salario -= salario * INSS;
+                return salario;
+            }
+        }
+        public static class FuncionarioPJ extends Funcionario{
+            private float impostos = 0.1f;
+
+            @Override
+            public double calcularSalario() {
+                salario = 700;
+                salario -= salario * impostos;
+                return salario;
+            }
+        }
+
+    }
     public class Questao9{}
     public class Questao10{}
 }
