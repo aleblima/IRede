@@ -1,4 +1,5 @@
 package Java_básico;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Unidade2_cap1_Alejandro {
@@ -31,6 +32,13 @@ public class Unidade2_cap1_Alejandro {
                 produto.setQuantity(100);
                 produto.getInfo();
                 break;
+            case (4):
+                Questao4.Engenheiro pessoa = new Questao4.Engenheiro();
+                pessoa.setEspecialista(true);
+                pessoa.saudacao();
+                pessoa.renda();
+                break;
+            case (5):
         }
     }
 
@@ -100,4 +108,53 @@ public class Unidade2_cap1_Alejandro {
             }
         }
     }
+    public class Questao4{
+
+        public static class Pessoa{
+            private String nome = "Alejandro";
+
+            public void saudacao(){
+                System.out.printf("Olá, meu nome é %s%n", this.nome);
+            }
+        }
+
+        public static class Funcionario extends Pessoa{
+            private double salario = 1700;
+
+            public void renda(){
+                System.out.printf("Meu salário é R$%.2f%n", this.salario);
+            }
+        }
+
+        public static class Engenheiro extends Funcionario{
+            private boolean especialista;
+
+            public void setEspecialista(boolean especialista){
+                this.especialista = especialista;
+                if (especialista){
+                    System.out.println("Especialista em Engenharia de Software");
+                }
+            }
+        }
+    }
+    public class Questao5{
+        public static class Produto{
+            private String name;
+            private float price;
+            private int quantity;
+        }
+
+        public static class ProdutoAlimenticio extends Produto{
+            private LocalDate dataValidade;
+            
+            public void estaVencido(){
+
+            }
+        }
+    }
+    public class Questao6{}
+    public class Questao7{}
+    public class Questao8{}
+    public class Questao9{}
+    public class Questao10{}
 }

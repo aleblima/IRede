@@ -99,7 +99,6 @@ public class Unidade2_cap4_Alejandro {
                 }
             }
     }
-
     public class Questao2{
         public static class Departamento{
             private String nome;
@@ -124,6 +123,13 @@ public class Unidade2_cap4_Alejandro {
             }
         }
     }
-
+    public class Questao3{}
+    public class Questao4{}
+    public class Questao5{}
+    public class Questao6{}
+    public class Questao7{}
+    public class Questao8{}
+    public class Questao9{}
+    public class Questao10{}
 }
 
