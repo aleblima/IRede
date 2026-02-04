@@ -59,6 +59,12 @@ public class Unidade2_cap1_Alejandro {
                 System.out.println("Salário CLT: " + clt.calcularSalario());
                 System.out.println("Salário PJ: " + pj.calcularSalario());
                 break;
+            case (9):
+                Questao9.Veiculo v1 = new Questao9.Carro();
+                Questao9.Veiculo v2 = new Questao9.Bicicleta();
+                v1.mover();
+                v2.mover();
+                break;
         }
     }
 
@@ -245,6 +251,31 @@ public class Unidade2_cap1_Alejandro {
         }
 
     }
-    public class Questao9{}
-    public class Questao10{}
+    public class Questao9{
+        public static abstract class Veiculo{
+            private String placa;
+            public abstract void mover();
+        }
+
+        public static class Carro extends Veiculo{
+            private String modelo;
+
+            @Override
+            public void mover(){
+                System.out.println("Movendo o carro...");
+            }
+        }
+        public static class Bicicleta extends Veiculo{
+            private String modelo;
+
+            @Override
+            public void mover(){
+                System.out.println("Movendo a bicicleta...");
+        }
+
+        }
+    }
+    public class Questao10{
+
+    }
 }
