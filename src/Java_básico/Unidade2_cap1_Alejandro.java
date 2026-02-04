@@ -49,7 +49,7 @@ public class Unidade2_cap1_Alejandro {
             case (7):
                 Questao7.Animal[] animais = {new Questao7.Cachorro(), new Questao7.Gato()};
             //  ou Questao7.Animal[] animais = new Questao7.Animal[2]; porém aqui teria que instanciar os objetos depois
-                for (Questao7.Animal animal : animais) {
+                    for (Questao7.Animal animal : animais) {
                     animal.fazerSom();
                 }
                 break;

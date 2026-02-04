@@ -1,4 +1,6 @@
 package Java_básico;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Unidade2_cap4_Alejandro {
@@ -49,6 +51,13 @@ public class Unidade2_cap4_Alejandro {
                     }
                     scanner.close();
             case (3):
+                Questao3.Comodo quarto = new Questao3.Comodo(quarto, 13);
+                Questao3.Comodo cozinha = new Questao3.Comodo(cozinha, 13);
+                Questao3.Comodo banheiro = new Questao3.Comodo(banheiro, 13);
+                ArrayList<Questao3.Comodo> comodo = new ArrayList<Questao3.Comodo>();
+                comodo.add(quarto);
+                comodo.add(cozinha);
+                comodo.add(banheiro);
 
             case (4):
 
@@ -99,6 +108,7 @@ public class Unidade2_cap4_Alejandro {
                 }
             }
     }
+
     public class Questao2{
         public static class Departamento{
             private String nome;
@@ -123,7 +133,35 @@ public class Unidade2_cap4_Alejandro {
             }
         }
     }
-    public class Questao3{}
+
+    public class Questao3{
+        public static class Comodo{
+            private float tamanho;
+            private String nomeComodo;
+
+        public Comodo(String nomeComodo, float tamanho){
+            this.nomeComodo = nomeComodo;
+            this.tamanho = tamanho;
+        }
+
+            public Comodo() {
+            nomeComodo = "Quarto";
+            tamanho = 10;
+            }
+        }
+
+        public static class Casa extends Comodo{
+            private ArrayList<Comodo> comodos;
+
+            public Casa(ArrayList<Comodo> comodos){
+                this.comodos = comodos;
+            }
+
+            public ArrayList<Comodo> getComodos(){
+                return comodos;
+            }
+        }
+    }
     public class Questao4{}
     public class Questao5{}
     public class Questao6{}
