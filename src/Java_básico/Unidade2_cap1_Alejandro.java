@@ -1,5 +1,6 @@
 package Java_básico;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Unidade2_cap1_Alejandro {
@@ -25,6 +26,7 @@ public class Unidade2_cap1_Alejandro {
                 float nota = 7;
                 Questao2.Aluno aluno = new Questao2.Aluno();
                 aluno.setGrade(nota);
+                break;
             case (3):
                 Questao3.Produto produto = new Questao3.Produto();
                 produto.setName("Caneta");
@@ -64,6 +66,16 @@ public class Unidade2_cap1_Alejandro {
                 Questao9.Veiculo v2 = new Questao9.Bicicleta();
                 v1.mover();
                 v2.mover();
+                break;
+            case (10):
+                double[] valores = {100, 250.67};
+                ArrayList<Questao10.Pagamento> pagamentos = new ArrayList<>();
+                pagamentos.add(new Questao10.PagamentoCartao());
+                pagamentos.add(new Questao10.PagamentoPix());
+
+                for (int i = 0; i < pagamentos.size(); i++) {
+                    pagamentos.get(i).processarPagamento(valores[i]);
+                }
                 break;
         }
     }
@@ -276,6 +288,34 @@ public class Unidade2_cap1_Alejandro {
         }
     }
     public class Questao10{
+        public static class Pagamento{
+            private double valor;
+
+            public void processarPagamento(double valor){
+                this.valor = valor;
+                System.out.printf("Processando pagamento de R$%.2f%n", this.valor);
+            }
+        }
+
+        public static class PagamentoCartao extends Pagamento{
+            private String numeroCartao;
+
+            @Override
+            public void processarPagamento(double valor){
+                super.processarPagamento(valor);
+                System.out.printf("Pagamento com cartão de crédito: R$%.2f concluido!%n", valor);
+            }
+        }
+
+        public static class PagamentoPix extends Pagamento{
+            private String numeroConta;
+
+            @Override
+            public void processarPagamento(double valor){
+                super.processarPagamento(valor);
+                System.out.printf("Pagamento via PIX: R$%.2f concluido!%n", valor);
+            }
+        }
 
     }
 }

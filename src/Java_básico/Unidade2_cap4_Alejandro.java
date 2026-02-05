@@ -61,7 +61,7 @@ public class Unidade2_cap4_Alejandro {
                 Questao3.Casa casa = new Questao3.Casa(comodo);
                 ArrayList<Questao3.Comodo> comodos = casa.getComodos();
                 for (Questao3.Comodo comodo1 : comodos){
-                    System.out.println("Nome do comodo: "+ comodo1.nomeComodo + " E tamanho do comodo: " + comodo1.tamanho);
+                    System.out.println("Nome do comodo: "+ comodo1.nomeComodo + ", tamanho do comodo: " + comodo1.tamanho);
                 }
 
             case (4):
