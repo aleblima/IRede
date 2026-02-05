@@ -51,13 +51,18 @@ public class Unidade2_cap4_Alejandro {
                     }
                     scanner.close();
             case (3):
-                Questao3.Comodo quarto = new Questao3.Comodo(quarto, 13);
-                Questao3.Comodo cozinha = new Questao3.Comodo(cozinha, 13);
-                Questao3.Comodo banheiro = new Questao3.Comodo(banheiro, 13);
                 ArrayList<Questao3.Comodo> comodo = new ArrayList<Questao3.Comodo>();
+                Questao3.Comodo quarto = new Questao3.Comodo("quarto", 33);
+                Questao3.Comodo cozinha = new Questao3.Comodo("cozinha", 43);
+                Questao3.Comodo banheiro = new Questao3.Comodo("banheiro", 23);
                 comodo.add(quarto);
                 comodo.add(cozinha);
                 comodo.add(banheiro);
+                Questao3.Casa casa = new Questao3.Casa(comodo);
+                ArrayList<Questao3.Comodo> comodos = casa.getComodos();
+                for (Questao3.Comodo comodo1 : comodos){
+                    System.out.println("Nome do comodo: "+ comodo1.nomeComodo + " E tamanho do comodo: " + comodo1.tamanho);
+                }
 
             case (4):
 
@@ -144,16 +149,12 @@ public class Unidade2_cap4_Alejandro {
             this.tamanho = tamanho;
         }
 
-            public Comodo() {
-            nomeComodo = "Quarto";
-            tamanho = 10;
-            }
         }
 
-        public static class Casa extends Comodo{
+        public static class Casa{
             private ArrayList<Comodo> comodos;
 
-            public Casa(ArrayList<Comodo> comodos){
+             Casa(ArrayList<Comodo> comodos){
                 this.comodos = comodos;
             }
 
