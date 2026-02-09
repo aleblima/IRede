@@ -163,7 +163,23 @@ public class Unidade2_cap4_Alejandro {
             }
         }
     }
-    public class Questao4{}
+    public class Questao4{
+        public static class Curso{
+            private String name;
+            ArrayList<Aluno> alunos = new ArrayList<>();
+        }
+
+        public static class Aluno{
+            private String name;
+
+            public Aluno(String name){
+                this.name = name;
+            }
+            public String getAluno(){
+                return name;
+            }
+        }
+    }
     public class Questao5{}
     public class Questao6{}
     public class Questao7{}
