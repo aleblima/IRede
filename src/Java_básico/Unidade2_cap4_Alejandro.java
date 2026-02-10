@@ -41,15 +41,14 @@ public class Unidade2_cap4_Alejandro {
                 System.out.println("1 - Departamento");
                 System.out.println("2 - Departamento e professor");
                 decision = scanner.nextInt();
-                    switch (decision){
-                        case(1):
+                    switch (decision) {
+                        case (1):
                             departamento.MostrarDepartamento();
                             break;
                         case (2):
                             professor.DepartamentoProfessor();
                             break;
                     }
-                    scanner.close();
             case (3):
                 ArrayList<Questao3.Comodo> comodo = new ArrayList<Questao3.Comodo>();
                 Questao3.Comodo quarto = new Questao3.Comodo("quarto", 33);
@@ -63,21 +62,38 @@ public class Unidade2_cap4_Alejandro {
                 for (Questao3.Comodo comodo1 : comodos){
                     System.out.println("Nome do comodo: "+ comodo1.nomeComodo + ", tamanho do comodo: " + comodo1.tamanho);
                 }
-
+                    break;
             case (4):
-
+                ArrayList<Questao4.Aluno> alunos = new ArrayList<>();
+                Questao4.Aluno aluno1 = new Questao4.Aluno("João");
+                Questao4.Aluno aluno2 = new Questao4.Aluno("Maria");
+                Questao4.Aluno aluno3 = new Questao4.Aluno("José");
+                alunos.add(aluno1);
+                alunos.add(aluno2);
+                alunos.add(aluno3);
+                Questao4.Curso curso = new Questao4.Curso("Eng. Software");
+                curso.addAluno(aluno1);
+                curso.addAluno(aluno2);
+                curso.addAluno(aluno3);
+                    break;
             case (5):
 
+                    break;
             case (6):
 
+                    break;
             case (7):
 
+                    break;
             case (8):
 
+                    break;
             case (9):
 
+                    break;
             case (10):
 
+                    break;
         }
 
     }
@@ -166,7 +182,19 @@ public class Unidade2_cap4_Alejandro {
     public class Questao4{
         public static class Curso{
             private String name;
-            ArrayList<Aluno> alunos = new ArrayList<>();
+            private ArrayList<Aluno> alunos;
+            public Curso(String name){
+                this.name = name;
+                this.alunos = new ArrayList<>();
+            }
+
+            public void addAluno(Aluno aluno){
+                alunos.add(aluno);
+            }
+            public void removeAluno(Aluno aluno){
+                alunos.remove(aluno);
+            }
+
         }
 
         public static class Aluno{

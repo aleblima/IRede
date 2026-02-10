@@ -1,4 +1,5 @@
 package Java_básico;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,17 +11,14 @@ public class Unidade2_cap1_Alejandro {
         int question = scanner.nextInt();
         switch (question) {
             case (1):
+                scanner.nextLine();
                 System.out.println("Qual o nome do titular da conta?");
                 String titular = scanner.nextLine();
                 System.out.println("Qual o saldo inicial da conta?");
-                scanner.nextLine();
                 double saldoInicial = scanner.nextDouble();
                 Questao1.ContaBancaria conta = new Questao1.ContaBancaria();
-                conta.saldo = saldoInicial;
-                conta.titular = titular;
-                System.out.println("Digite o valor a ser depositado: ");
-                double deposito = scanner.nextDouble();
-                conta.depositar(deposito);
+                conta.depositar(saldoInicial);
+                conta.setTitular(titular);
                 break;
             case (2):
                 float nota = 7;
@@ -42,7 +40,14 @@ public class Unidade2_cap1_Alejandro {
                 break;
             case (5):
                 Questao5.ProdutoAlimenticio produtoAlimenticio = new Questao5.ProdutoAlimenticio();
-                produtoAlimenticio.estaVencido();
+                System.out.println("Verificando se o produto está vencido...");
+
+                if (produtoAlimenticio.estaVencido()){
+                System.out.println("O produto está vencido.");
+                } else {
+                System.out.println("O produto não está vencido.");
+                }
+
                 break;
             case (6):
                 Questao6.Gerente gerente = new Questao6.Gerente(
@@ -56,10 +61,15 @@ public class Unidade2_cap1_Alejandro {
                 }
                 break;
             case (8):
-                Questao8.FuncionarioCLT clt = new Questao8.FuncionarioCLT();
-                Questao8.FuncionarioPJ pj = new Questao8.FuncionarioPJ();
-                System.out.println("Salário CLT: " + clt.calcularSalario());
-                System.out.println("Salário PJ: " + pj.calcularSalario());
+                ArrayList<Questao8.Funcionario> funcionarios = new ArrayList<>();
+                funcionarios.add( new Questao8.FuncionarioPJ());
+                funcionarios.add( new Questao8.FuncionarioCLT());
+                funcionarios.add( new Questao8.FuncionarioCLT());
+                funcionarios.add( new Questao8.FuncionarioPJ());
+
+                for (Questao8.Funcionario funcionario : funcionarios) {
+                    System.out.printf("Salário calculado: R$%.2f%n", funcionario.calcularSalario());
+                }
                 break;
             case (9):
                 Questao9.Veiculo v1 = new Questao9.Carro();
@@ -86,6 +96,10 @@ public class Unidade2_cap1_Alejandro {
             private double saldo;
             private String titular;
 
+            public String setTitular(String titular){
+                this.titular = titular;
+                return this.titular;
+            }
             public double getSaldo() {
                 return saldo;
             }
@@ -185,11 +199,11 @@ public class Unidade2_cap1_Alejandro {
         public static class ProdutoAlimenticio extends Produto{
             private LocalDate dataValidade = LocalDate.of(2026, 02, 02);
             
-            public void estaVencido(){
+            public boolean estaVencido(){
                 if (LocalDate.now().isAfter(dataValidade)){
-                    System.out.println("O produto está vencido.");
+                    return true;
                 } else {
-                    System.out.println("O produto não está vencido.");
+                    return false;
                 }
             }
         }
@@ -244,6 +258,7 @@ public class Unidade2_cap1_Alejandro {
         }
         public static class FuncionarioCLT extends Funcionario{
             private float INSS = 0.075f;
+            protected boolean CLT = true;
             @Override
             public double calcularSalario() {
                 salario = 500;
@@ -253,6 +268,7 @@ public class Unidade2_cap1_Alejandro {
         }
         public static class FuncionarioPJ extends Funcionario{
             private float impostos = 0.1f;
+            protected boolean CLT = false;
 
             @Override
             public double calcularSalario() {
@@ -293,7 +309,7 @@ public class Unidade2_cap1_Alejandro {
 
             public void processarPagamento(double valor){
                 this.valor = valor;
-                System.out.printf("Processando pagamento de R$%.2f%n", this.valor);
+                System.out.printf("Processando pagamento de R$%.2f...%n", this.valor);
             }
         }
 
@@ -303,7 +319,7 @@ public class Unidade2_cap1_Alejandro {
             @Override
             public void processarPagamento(double valor){
                 super.processarPagamento(valor);
-                System.out.printf("Pagamento com cartão de crédito: R$%.2f concluido!%n", valor);
+                System.out.printf("Pagamento com cartão de crédito de R$%.2f concluido!%n", valor);
             }
         }
 
@@ -313,7 +329,7 @@ public class Unidade2_cap1_Alejandro {
             @Override
             public void processarPagamento(double valor){
                 super.processarPagamento(valor);
-                System.out.printf("Pagamento via PIX: R$%.2f concluido!%n", valor);
+                System.out.printf("Pagamento via PIX de R$%.2f concluido!%n", valor);
             }
         }
 
