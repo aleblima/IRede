@@ -1,5 +1,5 @@
 package Java_básico;
-import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -77,10 +77,23 @@ public class Unidade2_cap4_Alejandro {
                 curso.addAluno(aluno3);
                     break;
             case (5):
+                System.out.println("insira a senha: ");
+                scanner.nextLine();
+                String senha = scanner.nextLine();
+                Questao5.Usuario user = new Questao5.Usuario();
+                Questao5.Admin admin = new Questao5.Admin();
+                System.out.printf("Escolha entre usuário ou admin%n 1- usuário%n 2- admin");
+                int num = scanner.nextInt();
+                (num == 1 ? user : admin).autenticar(senha);
 
                     break;
             case (6):
-
+                Questao6.Carro carro = new Questao6.Carro("Opala", 2002);
+                Questao6.Bicicleta bicicleta = new Questao6.Bicicleta("Caloi", 2025);
+                bicicleta.mover();
+                carro.mover();
+                carro.getYear();
+                bicicleta.getYear();
                     break;
             case (7):
 
@@ -208,8 +221,84 @@ public class Unidade2_cap4_Alejandro {
             }
         }
     }
-    public class Questao5{}
-    public class Questao6{}
+    public class Questao5{
+        public interface Autenticavel{
+
+            boolean autenticar(String senha);
+        }
+
+        public static class Usuario implements Autenticavel{
+
+            @Override
+            public boolean autenticar(String senha){
+                System.out.println(senha.length() >= 6 ? "Acesso liberado" : "Acesso negado");
+                return senha.length() >= 6;
+            }
+        }
+
+        public static class Admin implements Autenticavel{
+
+            @Override
+            public boolean autenticar(String senha){
+                boolean verificador = senha.equals("admin");
+                System.out.println(verificador ? "Acesso liberado": "Acesso negado");
+                return verificador;
+            }
+        }
+    }
+    public class Questao6{
+        public static abstract class Veiculo{
+            private String model;
+            private LocalDate year;
+
+            public abstract void mover();
+
+            public Veiculo(String model, LocalDate year){
+                this.model = model;
+                this.year = year;
+            }
+
+            public int getYear() {
+                return this.year.getYear();
+            }
+        }
+
+        public static class Bicicleta extends Veiculo{
+
+            public Bicicleta(String model, int year) {
+                super(model, LocalDate.of(year,1, 1));
+            }
+
+            @Override
+            public void mover() {
+                System.out.println("Bicicleta andando");
+            }
+            @Override
+            public int getYear() {
+                System.out.printf("O ano da bicicleta é: %d%n", super.getYear());
+                return super.getYear();
+            }
+        }
+
+        public static class Carro extends Veiculo{
+
+            public Carro(String model, int year) {
+                super(model, LocalDate.of(year,1, 1));
+            }
+
+            @Override
+            public void mover(){
+                System.out.println("Carro se movendo");
+            }
+
+            @Override
+            public int getYear() {
+                System.out.printf("O ano do carro é: %d%n", super.getYear());
+                return super.getYear();
+            }
+        }
+
+    }
     public class Questao7{}
     public class Questao8{}
     public class Questao9{}
