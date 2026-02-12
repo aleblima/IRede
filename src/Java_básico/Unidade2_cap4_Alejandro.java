@@ -1,6 +1,7 @@
 package Java_básico;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Unidade2_cap4_Alejandro {
@@ -28,7 +29,6 @@ public class Unidade2_cap4_Alejandro {
                         Carro1.ligarCarro();
                         break;
                 }
-                scanner.close();
             case (2):
                 System.out.println("Qual o nome do departamento?");
                 scanner.nextLine();
@@ -62,7 +62,7 @@ public class Unidade2_cap4_Alejandro {
                 for (Questao3.Comodo comodo1 : comodos){
                     System.out.println("Nome do comodo: "+ comodo1.nomeComodo + ", tamanho do comodo: " + comodo1.tamanho);
                 }
-                    break;
+                break;
             case (4):
                 ArrayList<Questao4.Aluno> alunos = new ArrayList<>();
                 Questao4.Aluno aluno1 = new Questao4.Aluno("João");
@@ -75,7 +75,7 @@ public class Unidade2_cap4_Alejandro {
                 curso.addAluno(aluno1);
                 curso.addAluno(aluno2);
                 curso.addAluno(aluno3);
-                    break;
+                break;
             case (5):
                 System.out.println("insira a senha: ");
                 scanner.nextLine();
@@ -85,8 +85,7 @@ public class Unidade2_cap4_Alejandro {
                 System.out.printf("Escolha entre usuário ou admin%n 1- usuário%n 2- admin");
                 int num = scanner.nextInt();
                 (num == 1 ? user : admin).autenticar(senha);
-
-                    break;
+                break;
             case (6):
                 Questao6.Carro carro = new Questao6.Carro("Opala", 2002);
                 Questao6.Bicicleta bicicleta = new Questao6.Bicicleta("Caloi", 2025);
@@ -94,19 +93,40 @@ public class Unidade2_cap4_Alejandro {
                 carro.mover();
                 carro.getYear();
                 bicicleta.getYear();
-                    break;
+                break;
             case (7):
-
-                    break;
+                int result = Questao7.lerNumeroInteiro(scanner);
+                    System.out.println("Número inteiro: " + result);
+                break;
             case (8):
-
-                    break;
+                System.out.println("Digite a sua idade: ");
+                int idade = scanner.nextInt();
+                    try {
+                        Questao8.checkAge(idade);
+                    } catch (Questao8.IdadeInvalidaException e){
+                        System.out.println(e.getMessage());
+                    }
+                break;
             case (9):
+                Questao9.ContaBancaria conta = new Questao9.ContaBancaria();
+                conta.setSaldo(1000);
 
-                    break;
+                try {
+                conta.sacar(500);
+                }catch (Questao9.SaldoInsuficienteException e){
+                    System.out.println(e.getMessage());
+                }
+
+                try {
+                    conta.sacar(2000);
+                }catch (Questao9.SaldoInsuficienteException e){
+                    System.out.println(e.getMessage());
+                }
+
+                break;
             case (10):
 
-                    break;
+                break;
         }
 
     }
@@ -142,7 +162,6 @@ public class Unidade2_cap4_Alejandro {
                 }
             }
     }
-
     public class Questao2{
         public static class Departamento{
             private String nome;
@@ -167,7 +186,6 @@ public class Unidade2_cap4_Alejandro {
             }
         }
     }
-
     public class Questao3{
         public static class Comodo{
             private float tamanho;
@@ -299,9 +317,63 @@ public class Unidade2_cap4_Alejandro {
         }
 
     }
-    public class Questao7{}
-    public class Questao8{}
-    public class Questao9{}
+    public static class Questao7{
+        public static int lerNumeroInteiro(Scanner scanner) {
+            while (true) {
+            try{
+                System.out.println("Digite um número inteiro: ");
+                return scanner.nextInt();
+            } catch (InputMismatchException e){
+                System.out.println("Erro: não foi digitado um número inteiro.");
+                scanner.next();
+            }
+            }
+        }
+    }
+    public class Questao8{
+        public static class IdadeInvalidaException extends Exception{
+            public IdadeInvalidaException(String msg){
+                super(msg);
+            }
+        }
+         public static int checkAge(int age) throws IdadeInvalidaException {
+            if (age < 0 ) {
+                throw new IdadeInvalidaException("Idade invalida");
+           } else if (age < 18){
+                throw new IdadeInvalidaException("Menor de idade não permitido");
+            } else {
+                System.out.println("Idade permitida");
+                return age;
+            }
+           }
+         }
+    public class Questao9{
+        public static class SaldoInsuficienteException extends Exception{
+            public SaldoInsuficienteException(String msg){
+                super(msg);
+            }
+        }
+
+        public static class ContaBancaria{
+            private int numero;
+            private double saldo;
+            private String titular;
+
+            public void setSaldo(double saldo) {
+                this.saldo = saldo;
+            }
+
+            public double sacar(double valor) throws SaldoInsuficienteException{
+                if (valor > saldo){
+                    throw new SaldoInsuficienteException("Saldo insuficiente");
+                }
+                System.out.printf("Saque realizado com sucesso!%n");
+                saldo -= valor;
+                System.out.printf("Saldo restante %.2f%n", saldo);
+                return valor;
+            }
+        }
+    }
     public class Questao10{}
 }
 
