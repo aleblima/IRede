@@ -1,4 +1,6 @@
 package Java_básico;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -374,6 +376,19 @@ public class Unidade2_cap4_Alejandro {
             }
         }
     }
-    public class Questao10{}
+    public class Questao10{
+            public static void abrirArquivo(String caminho){
+                File file = new File(caminho);
+                try(Scanner reader = new Scanner(file){
+                    while (reader.hasNextLine()){
+                        String data = reader.nextLine();
+                        System.out.println(data);
+                    }
+                } catch (FileNotFoundException e){
+                    System.out.println("Erro");
+                        e.printStackTrace();
+                }
+            }
+    }
 }
 
