@@ -38,7 +38,7 @@ public class Unidade2_cap4_Alejandro {
                 Questao2.Departamento departamento = new Questao2.Departamento(nomeDepartamento);
                 System.out.println("Qual o nome do professor?");
                 String nomeProfessor = scanner.nextLine();
-                Questao2.Professor professor = new Questao2.Professor(nomeProfessor, nomeDepartamento);
+                Questao2.Professor professor = new Questao2.Professor(nomeProfessor, departamento);
                 System.out.println("Selecione a informação que deseja ver:");
                 System.out.println("1 - Departamento");
                 System.out.println("2 - Departamento e professor");
@@ -56,14 +56,11 @@ public class Unidade2_cap4_Alejandro {
                 Questao3.Comodo quarto = new Questao3.Comodo("quarto", 33);
                 Questao3.Comodo cozinha = new Questao3.Comodo("cozinha", 43);
                 Questao3.Comodo banheiro = new Questao3.Comodo("banheiro", 23);
-                comodo.add(quarto);
-                comodo.add(cozinha);
-                comodo.add(banheiro);
                 Questao3.Casa casa = new Questao3.Casa(comodo);
-                ArrayList<Questao3.Comodo> comodos = casa.getComodos();
-                for (Questao3.Comodo comodo1 : comodos){
-                    System.out.println("Nome do comodo: "+ comodo1.nomeComodo + ", tamanho do comodo: " + comodo1.tamanho);
-                }
+                casa.addComodo(casa, quarto);
+                casa.addComodo(casa, cozinha);
+                casa.addComodo(casa, banheiro);
+                casa.listComodos(casa);
                 break;
             case (4):
                 ArrayList<Questao4.Aluno> alunos = new ArrayList<>();
@@ -127,7 +124,7 @@ public class Unidade2_cap4_Alejandro {
 
                 break;
             case (10):
-
+                Questao10.abrirArquivo("src/Java_básico/Questões/Atividade 1 - Questões.md");
                 break;
         }
 
@@ -179,9 +176,10 @@ public class Unidade2_cap4_Alejandro {
         public static class Professor{
             private String nome;
             private Departamento departamento;
-            public Professor(String nome, String departamento){
+
+            public Professor(String nome, Departamento departamento){
                 this.nome = nome;
-                this.departamento = new Departamento(departamento);
+                this.departamento = departamento;
             }
             public void DepartamentoProfessor(){
                 System.out.printf("O departamento do %s é %s%n", nome, departamento.nome);
@@ -193,10 +191,10 @@ public class Unidade2_cap4_Alejandro {
             private float tamanho;
             private String nomeComodo;
 
-        public Comodo(String nomeComodo, float tamanho){
-            this.nomeComodo = nomeComodo;
-            this.tamanho = tamanho;
-        }
+            public Comodo(String nomeComodo, float tamanho){
+                this.nomeComodo = nomeComodo;
+                this.tamanho = tamanho;
+            }
 
         }
 
@@ -209,6 +207,16 @@ public class Unidade2_cap4_Alejandro {
 
             public ArrayList<Comodo> getComodos(){
                 return comodos;
+            }
+
+            public void addComodo(Casa casa, Comodo comodo){
+                casa.getComodos().add(comodo);
+            }
+
+            public void listComodos(Casa casa){
+                for (Comodo comodo : casa.getComodos()){
+                    System.out.println("Nome do comodo: "+ comodo.nomeComodo + ", tamanho do comodo: " + comodo.tamanho);
+                }
             }
         }
     }
@@ -379,13 +387,13 @@ public class Unidade2_cap4_Alejandro {
     public class Questao10{
             public static void abrirArquivo(String caminho){
                 File file = new File(caminho);
-                try(Scanner reader = new Scanner(file){
+                try(Scanner reader = new Scanner(file)){
                     while (reader.hasNextLine()){
                         String data = reader.nextLine();
                         System.out.println(data);
                     }
                 } catch (FileNotFoundException e){
-                    System.out.println("Erro");
+                    System.out.println("Erro: Arquivo não encontrado");
                         e.printStackTrace();
                 }
             }
